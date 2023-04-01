@@ -11,4 +11,5 @@ export interface User {
   website: string;
   company: Company;
   isAdmin: boolean;
+  image?:string;
 }

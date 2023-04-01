@@ -19,7 +19,8 @@ export class UserService {
         users.map((user) => ({
           ...user,
           username: user.username.toUpperCase(),
-          isAdmin:user.id===10?true:false
+          isAdmin:user.id===10?true:false,
+          image:`https://robohash.org/alex/${user.username}`
         }))
       )
     );
