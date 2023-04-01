@@ -1,5 +1,29 @@
 <!-- <input [(ngModel)]="idDelete" >
 <button (click)="deleteUser(idDelete)">delete </button> -->
-
+<!-- 
 <input [(ngModel)]="idDelete">
-<button (click)="deleteUser(idDelete)">Delete</button>
+<button (click)="deleteUser(idDelete)">Delete</button> -->
+
+<table>
+  <tr>
+    <th> id</th>
+    <th> name</th>
+    <th> username</th>
+    <th> email</th>
+    <th> phone</th>
+    <th>website</th>
+    <th>Role</th>
+
+
+  </tr>
+  <tr *ngFor="let user of users">
+    <td>{{ user.id }}</td>
+    <td>{{ user.name }}</td>
+    <td>{{ user.username }}</td>
+    <td>{{ user.email }}</td>
+    <td>{{ user.phone }}</td>
+    <td>{{ user.website| titlecase}}</td>
+    <td>{{user.isAdmin}}</td>
+
+  </tr>
+</table>

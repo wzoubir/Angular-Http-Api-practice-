@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { User } from '../Interface/user';
 import { environment } from '../../environments/environment.development';
 
@@ -13,7 +13,16 @@ export class UserService {
 
   //get users
   getUser(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.urlApi}/users`);
+    return this.http.get<User[]>(`${this.urlApi}/users`).pipe(
+      // tap((users) => console.log('tap' + users))
+      map((users) =>
+        users.map((user) => ({
+          ...user,
+          username: user.username.toUpperCase(),
+          isAdmin:user.id===10?true:false
+        }))
+      )
+    );
   }
   //get one user
   getUserById(): Observable<User> {
@@ -38,5 +47,4 @@ export class UserService {
   deleteUser(id: number): Observable<unknown> {
     return this.http.delete<unknown>(`${this.urlApi}/users/${id}`);
   }
-
 }

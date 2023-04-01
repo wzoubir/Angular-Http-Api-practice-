@@ -9,53 +9,57 @@ import { UserService } from './service/user.service';
 })
 export class AppComponent implements OnInit {
   title = 'app';
-  private user: User = {
-    name: 'just created',
-    username: 'wz',
-    email: 'Sincere@april.biz',
-    address: {
-      street: 'Kulas Light',
-      suite: 'Apt. 556',
-      city: 'Gwenborough',
-      zipcode: '92998-3874',
-      geo: {
-        lat: '-37.3159',
-        lng: '81.1496',
-      },
-    },
-    phone: '1-770-736-8031 x56442',
-    website: 'hildegard.org',
-    company: {
-      name: 'Romaguera-Crona',
-      catchPhrase: 'Multi-layered client-server neural-net',
-      bs: 'harness real-time e-markets',
-    },
-  };
 
-  //user tobe updated
-  private userTobeUpdated: User = {
-    id: 2,
-    name: 'patch',
-    username: 'MR wz',
-    email: 'Sincere@april.biz',
-    address: {
-      street: 'Kulas Light',
-      suite: 'Apt. 556',
-      city: 'Gwenborough',
-      zipcode: '92998-3874',
-      geo: {
-        lat: '-37.3159',
-        lng: '81.1496',
-      },
-    },
-    phone: '1-770-736-8031 x56442',
-    website: 'hildegard.org',
-    company: {
-      name: 'Romaguera-Crona',
-      catchPhrase: 'Multi-layered client-server neural-net',
-      bs: 'harness real-time e-markets',
-    },
-  };
+    users:User[];
+
+
+  // private user: User = {
+  //   name: 'just created',
+  //   username: 'wz',
+  //   email: 'Sincere@april.biz',
+  //   address: {
+  //     street: 'Kulas Light',
+  //     suite: 'Apt. 556',
+  //     city: 'Gwenborough',
+  //     zipcode: '92998-3874',
+  //     geo: {
+  //       lat: '-37.3159',
+  //       lng: '81.1496',
+  //     },
+  //   },
+  //   phone: '1-770-736-8031 x56442',
+  //   website: 'hildegard.org',
+  //   company: {
+  //     name: 'Romaguera-Crona',
+  //     catchPhrase: 'Multi-layered client-server neural-net',
+  //     bs: 'harness real-time e-markets',
+  //   },
+  // };
+
+  // //user tobe updated
+  // private userTobeUpdated: User = {
+  //   id: 2,
+  //   name: 'patch',
+  //   username: 'MR wz',
+  //   email: 'Sincere@april.biz',
+  //   address: {
+  //     street: 'Kulas Light',
+  //     suite: 'Apt. 556',
+  //     city: 'Gwenborough',
+  //     zipcode: '92998-3874',
+  //     geo: {
+  //       lat: '-37.3159',
+  //       lng: '81.1496',
+  //     },
+  //   },
+  //   phone: '1-770-736-8031 x56442',
+  //   website: 'hildegard.org',
+  //   company: {
+  //     name: 'Romaguera-Crona',
+  //     catchPhrase: 'Multi-layered client-server neural-net',
+  //     bs: 'harness real-time e-markets',
+  //   },
+  // };
 
   private userTobeUpdatedd: any = {
     id: 7,
@@ -65,7 +69,9 @@ export class AppComponent implements OnInit {
   };
 
   idDelete: any;
-  constructor(private userservice: UserService) {}
+  constructor(private userservice: UserService) {
+    this.users=[]
+  }
 
   ngOnInit() {
     // this.getOneUser();
@@ -76,13 +82,26 @@ export class AppComponent implements OnInit {
     // this.updatePatch();
   }
 
+  // ongetUsers(): void {
+  //   this.userservice.getUser().subscribe(
+  //     (response) => console.table(response),
+  //     (error: any) => console.log(error),
+  //     () => console.table('done ')
+  //   );
+  // }
+
   ongetUsers(): void {
     this.userservice.getUser().subscribe(
-      (response) => console.table(response),
+      (response) =>{ console.table(response);
+        this.users=response;
+      },
       (error: any) => console.log(error),
       () => console.table('done ')
     );
   }
+
+
+
   getOneUser(): void {
     this.userservice.getUserById().subscribe(
       (response) => console.log(response),
@@ -91,13 +110,13 @@ export class AppComponent implements OnInit {
     );
   }
 
-  CreateUser(): any {
-    this.userservice.createUser(this.user).subscribe(
-      (response) => console.log(response),
-      (error: any) => console.log(error),
-      () => console.log('done create ')
-    );
-  }
+  // CreateUser(): any {
+  //   this.userservice.createUser(this.user).subscribe(
+  //     (response) => console.log(response),
+  //     (error: any) => console.log(error),
+  //     () => console.log('done create ')
+  //   );
+  // }
 
   updateUser(): any {
     this.userservice
